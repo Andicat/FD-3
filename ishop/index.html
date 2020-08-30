@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html> 
+<html> 
+<head> 
+  <meta charset="utf-8" />
+  <title>Ishop (интернет-магазин)</title>
+</head> 
+<body> 
+  <div id="container"></div> 
+      
+  <script src="https://unpkg.com/react@15/dist/react.js"></script> 
+  <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script> 
+      
+  <script src="Ishop.js"></script>
+  <link rel="stylesheet" type="text/css" href="Ishop.css" />
+
+  <script>
+
+    var shopTitle='Ishop';
+    var productsArr=[ 
+      {title:'camera1',code:1,price:100,photo:'img/camera.jpg',count:1}, 
+      {title:'camera2',code:2,price:200,photo:'img/camera.jpg',count:2},  
+      {title:'camera3',code:3,price:300,photo:'img/camera.jpg',count:3}, 
+    ];
+
+    ReactDOM.render(
+      React.createElement(ProductsTable,{title:shopTitle,products:productsArr}), 
+      document.getElementById('container') 
+    );
+
+  </script>
+
+</body> 
+</html>
