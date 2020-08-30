@@ -9,6 +9,15 @@
   render: function() {
 
     var productsCode=[];
+
+    var productsTableTitleCode=   
+      React.DOM.div({key:'title',className:'ProductsTitle'},
+        React.DOM.span({className:'Title'},'Product'),  
+        React.DOM.span({className:'Price'},'Price'),
+        React.DOM.span({className:'Photo'},'Photo'),
+        React.DOM.span({className:'Count'},'Count'),
+      );
+    productsCode.push(productsTableTitleCode);
     
     this.props.products.forEach(element => {
       var productCode=        
