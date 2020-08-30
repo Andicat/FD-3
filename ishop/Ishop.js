@@ -11,13 +11,12 @@
     var productsCode=[];
 
     var productsTableTitleCode=   
-      React.DOM.div({key:'title',className:'ProductsTitle'},
-        React.DOM.span({className:'Title'},'Product'),  
-        React.DOM.span({className:'Price'},'Price'),
-        React.DOM.span({className:'Photo'},'Photo'),
-        React.DOM.span({className:'Count'},'Count'),
+      React.DOM.div({className:'ProductsTitle'},
+        React.DOM.span({className:'TitleName'},'Product'),  
+        React.DOM.span({className:'TitlePrice'},'Price'),
+        React.DOM.span({className:'TitlePhoto'},'Photo'),
+        React.DOM.span({className:'TitleCount'},'Count'),
       );
-    productsCode.push(productsTableTitleCode);
     
     this.props.products.forEach(element => {
       var productCode=        
@@ -31,8 +30,8 @@
     });
 
     return React.DOM.div( {className:'ProductsTable'}, 
-      React.DOM.div( {className:'ShopTitle'}, this.props.title ),
-      React.DOM.div( {className:'Products'}, productsCode ),
+      React.DOM.div( {className:'ShopTitle'}, this.props.title),
+      React.DOM.div( {className:'Products'}, productsTableTitleCode, productsCode),
     );
   },
 

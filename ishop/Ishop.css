@@ -42,14 +42,14 @@
 }
 
 .ProductsTable .Products .Product .Title,
-.ProductsTable .Products .ProductsTitle .Title
+.ProductsTable .Products .ProductsTitle .TitleName
 {
   display: inline-block;
   width: 100px;
 }
 
 .ProductsTable .Products .Product .Price,
-.ProductsTable .Products .ProductsTitle .Price
+.ProductsTable .Products .ProductsTitle .TitlePrice
 {
   display: inline-block;
   width: 80px;
@@ -57,14 +57,14 @@
 }
 
 .ProductsTable .Products .Product .Photo,
-.ProductsTable .Products .ProductsTitle .Photo
+.ProductsTable .Products .ProductsTitle .TitlePhoto
 {
   display: inline-block;
   width: 150px;
 }
 
 .ProductsTable .Products .Product .Count,
-.ProductsTable .Products .ProductsTitle .Count
+.ProductsTable .Products .ProductsTitle .TitleCount
 {
   display: inline-block;
   width: 50px;
