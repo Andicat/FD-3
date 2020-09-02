@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html> 
+<html> 
+<head> 
+  <meta charset="utf-8" />
+  <title>Filter (фильтр)</title>
+</head> 
+<body> 
+  <div id="container"></div> 
+      
+  <script src="https://unpkg.com/react@15/dist/react.js"></script> 
+  <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script> 
+      
+  <script src="Filter.js"></script>
+  <link rel="stylesheet" type="text/css" href="Filter.css" />
+
+  <script>
+
+    var optionsArr=[ 
+      {code:1,text:'string one'},
+      {code:2,text:'string two'},
+      {code:3,text:'string three'},
+      {code:4,text:'string four'},
+      {code:5,text:'string five'},
+      {code:6,text:'string six'},
+      {code:7,text:'string seven'},
+      {code:8,text:'string eight'},
+      {code:9,text:'string nine'},
+      {code:10,text:'string ten'},
+    ];
+
+    /*var optionsArr=[ 
+      'string one',
+      'string two',
+      'string three',
+      'string four',
+      'string five',
+      'string six',
+      'string seven',
+      'string eight',
+      'string nine',
+      'string ten',
+    ];*/
+
+    ReactDOM.render(
+      React.createElement(Filter,{options:optionsArr}), 
+      document.getElementById('container') 
+    );
+
+  </script>
+
+</body> 
+</html>
