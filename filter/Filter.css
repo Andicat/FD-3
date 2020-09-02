@@ -58,8 +58,6 @@
   outline: none;
 }
 
-
-
 .Filter .Filter__select
 {
   width: 100%;
@@ -72,47 +70,4 @@
 .Filter .Filter__option
 {
   margin-bottom: 5px;
-}
-
-
-
-.Filter .options .option .Count
-{
-  display: inline-block;
-  font-weight: bold;
-  text-align: center;
-}
-
-.Filter .options .option .Title
-{
-  display: inline-block;
-  width: 100px;
-}
-
-.Filter .options .optionsTitle .TitleName
-{
-  display: inline-block;
-  width: 180px;
-}
-
-.Filter .options .option .Price,
-.Filter .options .optionsTitle .TitlePrice
-{
-  display: inline-block;
-  width: 80px;
-  text-align: center;
-}
-
-.Filter .options .option .Photo,
-.Filter .options .optionsTitle .TitlePhoto
-{
-  display: inline-block;
-  margin-right: 20px;
-}
-
-.Filter .options .option .Count,
-.Filter .options .optionsTitle .TitleCount
-{
-  display: inline-block;
-  width: 50px;
 }
