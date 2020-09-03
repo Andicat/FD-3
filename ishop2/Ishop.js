@@ -15,11 +15,9 @@
 
 
   deleteProduct: function(code) {
-    console.log('выбран ответ с кодом '+code);
     var arr = this.state.deletedProducts;
     arr.push(code);
     this.setState( {deletedProducts:arr} );
-    console.log(arr);
   },
 
   render: function() {
