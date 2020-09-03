@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html> 
+<html> 
+<head> 
+  <meta charset="utf-8" />
+  <title>Ishop2 (интернет-магазин)</title>
+</head> 
+<body> 
+  <div id="container"></div> 
+      
+  <script src="https://unpkg.com/react@15/dist/react.js"></script> 
+  <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script> 
+      
+  <script src="Ishop.js"></script>
+  <link rel="stylesheet" type="text/css" href="Ishop.css" />
+  <script src="Product.js"></script>
+  <link rel="stylesheet" type="text/css" href="Product.css" />
+
+  <script>
+
+    var shopTitle='Ishop';
+    var productsArr=[ 
+      {title:'Camera 1',code:1,price:250,photo:'img/camera-1.png',count:3}, 
+      {title:'Camera 2',code:2,price:100,photo:'img/camera-2.png',count:5},  
+      {title:'Camera 3',code:3,price:300,photo:'img/camera-3.png',count:3}, 
+      {title:'Camera 4',code:4,price:360,photo:'img/camera-4.png',count:7}, 
+      {title:'Camera 5',code:5,price:170,photo:'img/camera-5.png',count:10}, 
+      {title:'Camera 6',code:6,price:180,photo:'img/camera-6.png',count:2}, 
+      {title:'Camera 7',code:7,price:520,photo:'img/camera-7.png',count:3}, 
+    ];
+
+    ReactDOM.render(
+      React.createElement(ProductsTable,{title:shopTitle,products:productsArr}), 
+      document.getElementById('container') 
+    );
+
+  </script>
+
+</body> 
+</html>

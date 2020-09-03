@@ -1,0 +1,51 @@
+﻿.ProductsTable
+{
+  width: 410px;
+}
+
+.ProductsTable .ShopTitle
+{
+  font-weight: bold;
+  font-size: 20px;
+  color: teal;
+  margin-left: 10px;
+}
+
+.ProductsTable .Products
+{
+  margin-top: 10px;
+  border: solid teal 3px;
+}
+
+.ProductsTable .Products .ProductsTitle
+{
+  font-size: 18px;
+  font-weight: bold;
+  color: teal;
+  padding: 5px;
+}
+
+.ProductsTable .Products .ProductsTitle .TitleName
+{
+  display: inline-block;
+  width: 180px;
+}
+
+.ProductsTable .Products .ProductsTitle .TitlePrice
+{
+  display: inline-block;
+  width: 80px;
+  text-align: center;
+}
+
+.ProductsTable .Products .ProductsTitle .TitlePhoto
+{
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.ProductsTable .Products .ProductsTitle .TitleCount
+{
+  display: inline-block;
+  width: 50px;
+}
