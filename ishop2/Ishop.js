@@ -8,7 +8,6 @@
 
   getInitialState: function() {
     return { 
-      deletedProducts: [],
       selectedProduct: -1,
       productsToShow:this.props.products.map(function (val) { return val; }),
     };
@@ -18,9 +17,10 @@
   deleteProduct: function(code) {
     var isConfirmed = confirm('Удалить ' + this.state.productsToShow[code-1].title + ' из списка товаров?');
     if (isConfirmed) {
-      var arr = this.state.deletedProducts;
-      arr.push(code);
-      this.setState( {deletedProducts:arr} );
+      console.log('delete ' + code);
+      var arr = this.state.productsToShow.splice(code, 1);
+      console.log(arr);
+      //this.setState( {productsToShow:this.state.productsToShow.splice(code, 1)} );
     }
   },
 
@@ -43,7 +43,7 @@
        React.createElement(Product, {
           key:v.code, photo:v.photo, title:v.title, 
           code:v.code, price:v.price, count:v.count,
-          isDeleted:this.state.deletedProducts.indexOf(v.code)>=0 ? true : false, cbDelete:this.deleteProduct, 
+          cbDelete:this.deleteProduct, 
           isSelected:v.code===this.state.selectedProduct? true:false, cbSelect:this.selectProduct,})
       );
     

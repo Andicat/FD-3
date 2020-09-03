@@ -8,7 +8,6 @@
     photo: React.PropTypes.string,
     price: React.PropTypes.number.isRequired,
     count: React.PropTypes.number.isRequired,
-    isDeleted: React.PropTypes.bool,
     cbDelete: React.PropTypes.func.isRequired,
     isSelected: React.PropTypes.bool,
     cbSelect: React.PropTypes.func.isRequired,
