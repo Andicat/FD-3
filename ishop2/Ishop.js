@@ -9,6 +9,7 @@
   getInitialState: function() {
     return { 
       deletedProducts: [],
+      selectedProduct: -1,
       productsToShow:this.props.products.map(function (val) { return val; }),
     };
   },
@@ -21,6 +22,10 @@
       arr.push(code);
       this.setState( {deletedProducts:arr} );
     }
+  },
+
+  selectProduct: function(code) {
+    this.setState( {selectedProduct:code} );
   },
 
   render: function() {
@@ -38,7 +43,8 @@
        React.createElement(Product, {
           key:v.code, photo:v.photo, title:v.title, 
           code:v.code, price:v.price, count:v.count,
-          isDeleted:this.state.deletedProducts.indexOf(v.code)>=0 ? true : false, cbDelete:this.deleteProduct})
+          isDeleted:this.state.deletedProducts.indexOf(v.code)>=0 ? true : false, cbDelete:this.deleteProduct, 
+          isSelected:v.code===this.state.selectedProduct? true:false, cbSelect:this.selectProduct,})
       );
     
     return React.DOM.div( {className:'ProductsTable'}, 

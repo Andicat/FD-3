@@ -10,20 +10,22 @@
     count: React.PropTypes.number.isRequired,
     isDeleted: React.PropTypes.bool,
     cbDelete: React.PropTypes.func.isRequired,
+    isSelected: React.PropTypes.bool,
+    cbSelect: React.PropTypes.func.isRequired,
   },
 
-  chooseProduct: function(EO) {
+  changeProduct: function(EO) {
     switch (EO.target.type) {
       case 'button':
         this.props.cbDelete(this.props.code);
         break;
       default:
-        EO.currentTarget.classList.toggle('Product--selected');
+        this.props.cbSelect(this.props.code);
     };
   },
 
   render: function() {
-    return this.props.isDeleted ? null : React.DOM.div({key:this.props.code,className:'Product',onClick:this.chooseProduct},
+    return this.props.isDeleted ? null : React.DOM.div({key:this.props.code,className:this.props.isSelected?'Product Product--selected':'Product',onClick:this.changeProduct},
       React.DOM.img({className:'Product__photo', src: this.props.photo, alt:this.props.photo, width:'60px', height:'60px'}),  
       React.DOM.span({className:'Product__title'},this.props.title),  
       React.DOM.span({className:'Product__price'},this.props.price),
