@@ -16,7 +16,7 @@
   changeProduct: function(EO) {
     switch (EO.target.type) {
       case 'button':
-        this.props.cbDelete(this.props.code);
+        this.props.cbDelete(this.props.code, this.props.title);
         break;
       default:
         this.props.cbSelect(this.props.code);
