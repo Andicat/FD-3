@@ -12,26 +12,25 @@
              textFilter:'', }
   },
 
-  filterOptions: function(EO) {
-    var textFilter;
-    var isSorting;
+  filterOptions: function() {
+    console.log('sort' + this.state.textFilter);
+    var filteredArr = this.props.options.map(function (val) { return val; });
+    var text = this.state.textFilter;
+    filteredArr = text ? filteredArr.filter(function(val) { return val.text.toLowerCase().indexOf(text.toLowerCase()) > -1; }) : filteredArr;
+    filteredArr = this.state.isSorting ? filteredArr.sort(function(a,b) { return a.text>b.text? 1:a.text<b.text?-1:0; }) : filteredArr;
+    this.setState( {optionsToShow:filteredArr} );
+  },
+
+  setFilter: function(EO) {
     switch (EO.target.type) {
       case 'text':
-        textFilter = EO.target.value;
-        isSorting = this.state.isSorting;
-        this.setState( {textFilter:textFilter} );
+        this.setState( {textFilter:EO.target.value}, this.filterOptions );
         break;
       case 'checkbox':
-        isSorting = EO.target.checked;
-        textFilter = this.state.textFilter;
-        this.setState( {isSorting:isSorting} );
+        this.setState( {isSorting:EO.target.checked}, this.filterOptions );
         break;
       default:
     }
-
-    var filteredArr = isSorting ? this.props.options.map(function (val) { return val; }).sort(function(a,b) { return a.text>b.text? 1:a.text<b.text?-1:0; }) : this.props.options.map(function (val) { return val; });
-    filteredArr = filteredArr.filter(function(val) { return val.text.toLowerCase().indexOf(textFilter.toLowerCase()) > -1; });
-    this.setState( {optionsToShow:filteredArr} );
   },
 
   resetOptions: function(EO) {
@@ -45,8 +44,8 @@
 
     var filterPanel=   
       React.DOM.div({className:'Filter__panel'},
-        React.DOM.input({className:'Filter__sort',type:'checkbox',checked:this.state.isSorting,onClick:this.filterOptions}),  
-        React.DOM.input({className:'Filter__search',type:'text',value:this.state.textFilter,onChange:this.filterOptions}),
+        React.DOM.input({className:'Filter__sort',type:'checkbox',checked:this.state.isSorting,onClick:this.setFilter}),  
+        React.DOM.input({className:'Filter__search',type:'text',value:this.state.textFilter,onChange:this.setFilter}),
         React.DOM.button({className:'Filter__button',onClick:this.resetOptions},'сброс'),
       );
 
@@ -64,4 +63,10 @@
     return React.DOM.div( {className:'Filter'},filterPanel,filterResult);
   },
 
+ 
+
 });
+
+var t = function(a,b) {return a + b};
+
+console.log(t.prototype);
