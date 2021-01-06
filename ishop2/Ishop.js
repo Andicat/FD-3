@@ -9,18 +9,16 @@
   getInitialState: function() {
     return { 
       selectedProduct: -1,
-      productsToShow:this.props.products.map(function (val) { return val; }),
+      productsToShow:this.props.products.map(v => v),
     };
   },
 
 
-  deleteProduct: function(code) {
-    var isConfirmed = confirm('Удалить ' + this.state.productsToShow[code-1].title + ' из списка товаров?');
+  deleteProduct: function(code, title) {
+    var isConfirmed = confirm('Удалить ' + title + ' из списка товаров?');
     if (isConfirmed) {
-      console.log('delete ' + code);
-      var arr = this.state.productsToShow.splice(code, 1);
-      console.log(arr);
-      //this.setState( {productsToShow:this.state.productsToShow.splice(code, 1)} );
+      var arr = this.state.productsToShow.filter(v => v.code!==code);
+      this.setState( {productsToShow:arr} );
     }
   },
 
