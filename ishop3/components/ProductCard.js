@@ -88,7 +88,7 @@ class ProductCard extends React.Component {
     }
 
     cancel = () => {
-        this.setState({isValid:true},this.props.cbCancel(false)); 
+        this.setState({isValid:true},this.props.cbCancel(this.props.code,false)); 
     }
 
     render() {
