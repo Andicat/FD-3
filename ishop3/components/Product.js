@@ -1,8 +1,5 @@
 ﻿import React from 'react';
 import PropTypes from 'prop-types';
-import DOM from 'react-dom-factories';
-
-import './Product.css';
 
 class Product extends React.Component {
 
@@ -11,31 +8,42 @@ class Product extends React.Component {
         title: PropTypes.string.isRequired,
         photo: PropTypes.string,
         price: PropTypes.number.isRequired,
-        count: PropTypes.number.isRequired,
+        quantity: PropTypes.number.isRequired,
         cbDelete: PropTypes.func.isRequired,
-        isSelected: PropTypes.bool,
+        cbEdit: PropTypes.func.isRequired,
         cbSelect: PropTypes.func.isRequired,
+        isSelected: PropTypes.bool,
+        isEdit: PropTypes.bool,
+        isNew: PropTypes.bool,
+        isChange: PropTypes.bool,
     };
 
-    changeProduct = (EO) => {
-        console.log(this.props.code);
-        switch (EO.target.type) {
-            case 'button':
-                this.props.cbDelete(this.props.code);
-            break;
-        default:
-            this.props.cbSelect(this.props.code);
-        };
+    selectProduct = (evt) => {
+        if (!this.props.isChange&&(evt.target.type!='button')) {
+            this.props.cbEdit(this.props.code, false);
+        }
+    };
+
+    deleteProduct = () => {
+        this.props.cbDelete(this.props.code,this.props.title);
+    };
+
+    editProduct = () => {
+        this.props.cbEdit(this.props.code, true);
     };
 
     render() {
-        console.log(this.props);
-        return this.props.isDeleted ? null : DOM.div({key:this.props.code,className:this.props.isSelected?'Product Product--selected':'Product',onClick:this.changeProduct},
-            DOM.img({className:'Product__photo', src: this.props.photo, alt:this.props.photo, width:'60px', height:'60px'}),  
-            DOM.span({className:'Product__title'},this.props.title),  
-            DOM.span({className:'Product__price'},this.props.price),
-            DOM.span({className:'Product__count'},this.props.count),
-            DOM.button({className:'Product__button',type:'button'},'delete'),
+        return (
+            this.props.isDeleted ? null : (
+                <div className={'product' + (this.props.isSelected?' product--selected':'')} onClick={this.selectProduct}  key={this.props.code}>
+                    <img className='product__photo' src= {this.props.photo} alt={this.props.photo}/>
+                    <span className='product__title'>{this.props.title}</span>
+                    <span className='product__price'>{this.props.price}</span>
+                    <span className='product__quantity'>{this.props.quantity}</span>
+                    <button className='product__button' type='button' onClick={this.editProduct} disabled={this.props.isChange||this.props.isNew}>edit</button>
+                    <button className='product__button' type='button' onClick={this.deleteProduct} disabled={this.props.isEdit}>delete</button>
+                </div>
+            )
         );
     }
 }
