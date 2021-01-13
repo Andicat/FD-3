@@ -18,14 +18,10 @@ class BR2JSX extends React.Component {
     };
 
     render() {
-        var regBr = /<br.*?>/ig;
-        var textCode = [];
-        this.props.text.split(regBr).forEach( e => {textCode.push(e); textCode.push(<br/>)});
-        textCode.pop();
-        
+        var wordsArr = this.props.text.split(/<br.*?>/ig);
         return (
             <div className='BR2JSX'>
-                {textCode}      
+                {wordsArr.map( (w,i) => { return <React.Fragment key={i}>{w} {i<wordsArr.length-1&&<br/>}</React.Fragment> })}        
             </div>
         )
     }
