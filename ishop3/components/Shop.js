@@ -1,8 +1,6 @@
 ﻿import React from 'react';
 import PropTypes from 'prop-types';
 
-import './shop.css';
-
 import Product from './Product';
 import ProductCard from './ProductCard';
 
@@ -37,7 +35,7 @@ class Shop extends React.Component {
     deleteProduct = (code,title) => {
         var isConfirmed = confirm('Удалить ' + title + ' из списка товаров?');
         if (isConfirmed) {
-            this.setState( {selectedProduct:code, productsToShow:this.state.productsToShow.filter( v => v.code!=code)} );
+            this.setState( {selectedProduct:null, productsToShow:this.state.productsToShow.filter( v => v.code!=code)} );
         }
     };
 
@@ -72,7 +70,7 @@ class Shop extends React.Component {
         var card=null;
 
         var productsTableTitleCode = 
-            <div className='products__title'>
+            <div className='productsTable__title'>
                 <span className='titleName'>Product</span>
                 <span className='titlePrice'>Price</span>
                 <span className='titleQuantity'>Quantity</span>
@@ -107,7 +105,7 @@ class Shop extends React.Component {
             <div className='shop'>
                 <div className='shop__title'>{this.props.title}</div>
                 <div className='shop__table'>
-                    <div className='products'>{productsTableTitleCode}{productsCode}</div>
+                    <div className='productsTable'>{productsTableTitleCode}{productsCode}</div>
                     <button className='product__button shop__add' type='button' onClick={this.newProduct} disabled={this.state.IsEditProduct}>new product</button>
                 </div>
                 {card}

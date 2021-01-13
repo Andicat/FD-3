@@ -1,70 +1,66 @@
-﻿.Product
-{
-  font-size: 18px;
-  display: flex;
-  align-items: center;
-  padding: 5px 10px;
-}
+.product {
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
 
-.Product:hover {
-  cursor: pointer;
-}
+    &:hover {
+        cursor: pointer;
+    }
 
-.Product--selected {
-  background-color: rgb(241, 199, 172);
-}
+    &--selected {
+        background-color: rgb(241, 199, 172);
+    }
 
-.Product .Product__count
-{
-  display: inline-block;
-  font-weight: bold;
-  text-align: center;
-}
+    &__title {
+        display: inline-block;
+        width: 100px;
+    }
 
-.Product .Product__title
-{
-  display: inline-block;
-  width: 100px;
-}
+    &__photo {
+        display: inline-block;
+        margin-right: 20px;
+        border-radius: 50%;
+        border: solid teal 1px;
+        width: 60px;
+        height: 60px;
+    }
+      
+    &__price {
+        display: inline-block;
+        width: 80px;
+        text-align: center;
+    }
+      
+    &__quantity {
+        display: inline-block;
+        width: 50px;
+        font-weight: bold;
+        text-align: center;
+    }
 
-.Product .Product__price
-{
-  display: inline-block;
-  width: 80px;
-  text-align: center;
-}
+    &__button {
+        height: 30px;
+        min-width: 70px;
+        border-radius: 3px;
+        border: none;
+        background-color: teal;
+        color: white;
+        padding: 5px 10px;
+        margin-right: 5px;
+        text-transform: uppercase;
 
-.Product .Product__photo
-{
-  display: inline-block;
-  margin-right: 20px;
-  border-radius: 50%;
-  border: solid teal 1px;
-}
+        &:hover {
+            background-color: rgb(2, 90, 90);
+            cursor: pointer;
+        }
 
-.Product .Product__count
-{
-  display: inline-block;
-  width: 50px;
-}
+        &:focus {
+            outline: none;
+        }
 
-.Product .Product__button
-{
-  height: 30px;
-  min-width: 70px;
-  border-radius: 3px;
-  border: none;
-  background-color: teal;
-  color: white;
-  padding: 5px 10px;
-  text-transform: uppercase;
-}
-
-.Product .Product__button:hover {
-  background-color: rgb(2, 90, 90);
-  cursor: pointer;
-}
-
-.Product .Product__button:focus {
-  outline: none;
+        &:disabled {
+            background-color: #797979;
+        }
+    }
 }
