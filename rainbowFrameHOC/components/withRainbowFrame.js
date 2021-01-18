@@ -13,28 +13,24 @@ let FramedDoubleButton=withRainbowFrame(colors)(DoubleButton);
 */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 
-class RainbowFrame extends React.Component {
+function withRainbowFrame (colors) {
 
-  static propTypes = {
-    colors: PropTypes.array.isRequired,
-  };
-
-  renderBorder = (i = 0, ) => {
-    return <div style={{padding:'5px', border:'solid 5px ' + this.props.colors[i]}}>
-      {(i<this.props.colors.length)?this.renderBorder(i+1):this.props.children}
-    </div>
-  }
-
-  //2 вариант: рамка в виде border: много вложенных блоков
-  render() {
+  function renderBorder (i = 0, Component,props) {
     return (
-      <div className='rainbowFrame'>
-        {this.renderBorder()}
+      <div style={{padding:'5px', border:'solid 5px ' + colors[i]}}>
+        {(i<colors.length)?renderBorder(i+1,Component,props):<Component {...props} />}
       </div>
     );
   }
+
+  return function(Component) {
+    return props => (
+      <div className='doubleButton__frame'>
+        {renderBorder(0,Component,props)}
+      </div>
+    );
+  };
 }
 
-export default RainbowFrame;
+export { withRainbowFrame };

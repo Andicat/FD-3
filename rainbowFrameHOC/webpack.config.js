@@ -25,7 +25,18 @@ module.exports = {
                 use: extractCSS.extract({
                     use: ["css-loader"]
                 })
-            }            
+            },
+            {
+                test: /\.scss$/,
+                use: extractCSS.extract({
+                    use: ['css-loader',{
+                        loader: "sass-loader",
+                        options: {
+                            minimize: false,
+                        }}
+                    ]
+                })
+            },            
         ] 
     },
     plugins: [
