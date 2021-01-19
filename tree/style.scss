@@ -1,9 +1,4 @@
-﻿@mixin transition($args...) {
-    transition-property: $args;
-    transition-duration: 0.3s;
-}
-
-@mixin visually-hidden {
+﻿@mixin visually-hidden {
 	position: absolute;
 	clip: rect(0 0 0 0);
 	width: 1px;
@@ -39,91 +34,77 @@
         overflow: auto;
     }
 
-	&__node {
-        @include transition(all);
+    &__folder {
+        transition-duration: 0.3s;
         padding: 0;
         list-style: none;
         text-align: left;
 
-        input {
-            @include visually-hidden;
-            display: none;
-            visibility: hidden;
-        }
-
-        label {
-            display: block;
-            height: 30px;
-            width: 30px;
-            background-image: url("./img/up-arrow.svg");
-            background-repeat: no-repeat;
-            background-size: 10px;
-            background-position: center;
-            transform: rotate(90deg);
-            cursor: pointer;
-
-            &:focus,
-            &:hover {
-                background-size: 12px;
-            }
-        }
-
-        span {
-            display: inline-block;
-            position: relative;
-            font-size: 20px;
-            margin-left: 23px;
-            line-height: 30px;
-            padding: 0 5px;
-            cursor: pointer;
-
-            &::before {
-                content: "";
-                position: absolute;
-                width: 20px;
-                height: 20px;
-                left: -23px;
-                top: 5px;
-                background-repeat: no-repeat;
-            }
-        }
-
         &-name {
             display: flex;
-            span::before {
-                background-image: url("./img/folder.svg");
+
+            input {
+                @include visually-hidden;
+                display: none;
+                visibility: hidden;
+            }
+    
+            label {
+                display: block;
+                height: 30px;
+                width: 30px;
+                background-image: url("/img/up-arrow.svg");
+                background-repeat: no-repeat;
+                background-size: 10px;
+                background-position: center;
+                transform: rotate(90deg);
+                cursor: pointer;
+    
+                &:focus,
+                &:hover {
+                    background-size: 12px;
+                }
+            }
+    
+            span {
+                display: inline-block;
+                position: relative;
+                font-size: 20px;
+                margin-left: 23px;
+                line-height: 30px;
+                padding: 0 5px;
+                cursor: pointer;
+    
+                &::before {
+                    content: "";
+                    position: absolute;
+                    width: 20px;
+                    height: 20px;
+                    left: -23px;
+                    top: 5px;
+                    background-repeat: no-repeat;
+                    background-image: url("/img/folder.svg");
+                }
             }
         }
 
         &-children {
             padding: 0;
             margin-left: 10px;
-            //display: none;
-            &--files {
-                position: absolute;
-                right: 0;
-                bottom: 0;
-            }
         }
-    }
 
-    &__folder {
-     
         & > span {
             margin-left: 53px;
         }
         
         &--open {
-            & > .tree__node-name label {
+            & > .tree__folder-name label {
                 transform: rotate(180deg);
-            }
-            & > .tree__node-children {
-               // display: block;
             }
         }
 
         &--active {
-            & > .tree__node-name span,
+            & > .tree__folder-name span,
             & > span {
                 background-color: lightblue;
                 border-radius: 4px;
@@ -133,7 +114,6 @@
     }
 
     &__file {
-        display: none;
         position: relative;
         font-size: 20px;
         margin-left: 20px;
@@ -150,7 +130,7 @@
             height: 20px;
             left: -20px;
             top: 5px;
-            background-image: url("./img/file.svg");
+            background-image: url("/img/file.svg");
             background-repeat: no-repeat;
         }
     }

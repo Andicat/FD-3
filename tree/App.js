@@ -31,8 +31,9 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Files from './components/Files';
+import Folders from './components/Folders';
 
-import Tree from './components/Tree';
 import './style.scss';
 
 let treeData = { name: "tree", type:"FOLDER", children: [
@@ -51,7 +52,10 @@ let treeData = { name: "tree", type:"FOLDER", children: [
 ] };
 
 ReactDOM.render(
-  <Tree treeData = {treeData}/>
+    <div className='tree__container'>
+        <Folders folders={treeData}></Folders>
+        <Files/>
+    </div>
   , document.getElementById('container') 
 );
 

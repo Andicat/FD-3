@@ -1,18 +1,29 @@
 ﻿import React from 'react';
-import PropTypes from 'prop-types';
+import foldersEvents from './events';
 
 class Files extends React.Component {
 
-    static propTypes = {
-        files: PropTypes.array.isRequired
-    };
+    state = {
+        files: [],
+    }
+
+    componentDidMount = () => {
+        foldersEvents.addListener('showFiles',this.renderFiles)
+    }
+
+    componentWillUnmount = () => {
+        foldersEvents.removeListener('showFiles',this.renderFiles)
+    }
+
+    renderFiles = (info) => {
+        this.setState({files: info.files.map((v,i) => <span key={i} className='tree__file'>{v.name}</span>)});
+    }
 
     render() {
         return (
             <div className='tree__files'>
-                <span className='tree__node tree__file'>{this.props.name}</span>
+                {this.state.files.length>0?this.state.files:null}
             </div>
-            
         );
     }
 }
