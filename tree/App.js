@@ -33,7 +33,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import Tree from './components/Tree';
-import './components/style.scss';
+import './style.scss';
 
 let treeData = { name: "tree", type:"FOLDER", children: [
   { name: "folder1", type:"FOLDER", children: [] },
