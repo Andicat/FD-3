@@ -15,17 +15,24 @@ class Folders extends React.Component {
     };
 
     componentDidMount = () => {
-        foldersEvents.addListener('showFiles',this.activateFolder)
+        foldersEvents.addListener('showFiles',this.activateFolder);
+        console.log('Folders - componentDidMount');
     }
 
     componentWillUnmount = () => {
-        foldersEvents.removeListener('showFiles',this.activateFolder)
+        foldersEvents.removeListener('showFiles',this.activateFolder);
+        console.log('Folders - componentWillUnmount');
     }
 
     activateFolder = (info) => {
         this.setState({activeFolder:info.activeCode});
     }
 
+    componentWillReceiveProps = (newProps)           => { console.log('Folders - componentWillReceiveProps'); };
+    componentWillUpdate       = ()                   => { console.log('Folders - componentWillUpdate');       };
+    componentDidUpdate        = (oldProps, oldState) => { console.log('Folders - componentDidUpdate');        };
+    componentWillMount        = ()                   => { console.log('Folders - componentWillMount');        };
+    
     render() {
         return (
             <div className='tree__folders'>

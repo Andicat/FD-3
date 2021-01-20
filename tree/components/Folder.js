@@ -18,15 +18,25 @@ class Folder extends React.Component {
         childrenFiles: this.props.children.slice().filter( v => v.type=='FILE'),
     };
 
-    openFolder = () => {
+    componentWillReceiveProps = (newProps)           => { console.log(`Folder ${this.props.name} - componentWillReceiveProps`); };
+    componentWillUpdate       = ()                   => { console.log(`Folder ${this.props.name} - componentWillUpdate`);       };
+    componentDidUpdate        = (oldProps, oldState) => { console.log(`Folder ${this.props.name} - componentDidUpdate`);        };
+    componentWillMount        = ()                   => { console.log(`Folder ${this.props.name} - componentWillMount`);        };
+    componentDidMount         = ()                   => { console.log(`Folder ${this.props.name} - componentDidMount`);         };
+    componentWillUnmount      = ()                   => { console.log(`Folder ${this.props.name} - componentWillUnmount`);      };
+
+
+    clickFolder = () => {
         this.setState({isOpen:!this.state.isOpen});
-        foldersEvents.emit('showFiles',{files:this.state.childrenFiles, activeCode:this.props.code});
+        if (this.props.code!=this.props.activeFolder) {
+            foldersEvents.emit('showFiles',{files:this.state.childrenFiles, activeCode:this.props.code});
+        }
     }
 
     render() {
         return (
             <div className={'tree__folder' + (this.state.isOpen?' tree__folder--open ':'')  + (this.props.code==this.props.activeFolder?' tree__folder--active ':'')}>
-                <div className='tree__folder-name' onClick={this.openFolder}>
+                <div className='tree__folder-name' onClick={this.clickFolder}>
                     <input type='checkbox' name='tree' id={this.props.name}/>
                     <label htmlFor={this.props.name}></label>
                     <span>{this.props.name}</span>
