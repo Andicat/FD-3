@@ -3,19 +3,20 @@ import PropTypes from 'prop-types';
 
 import foldersEvents from './events';
 
+//Компонент - папка (с вложенными в нее папками).
 class Folder extends React.Component {
 
     static propTypes = {
-        activeFolder: PropTypes.string.isRequired,
-        code: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
-        children: PropTypes.array,
+        activeFolder: PropTypes.string.isRequired, //код активной папки
+        code: PropTypes.string.isRequired,  //уникальный код
+        name: PropTypes.string.isRequired,  //наименование
+        children: PropTypes.array,  //вложенные дети (папки и файлы)
     };
 
     state = {
-        isOpen: false,
-        childrenFolders: this.props.children.slice().filter( v => v.type=='FOLDER'),
-        childrenFiles: this.props.children.slice().filter( v => v.type=='FILE'),
+        isOpen: false, //признак, открыта ли папка
+        childrenFolders: this.props.children.slice().filter( v => v.type=='FOLDER'), //вложенные дети-папки
+        childrenFiles: this.props.children.slice().filter( v => v.type=='FILE'), //вложенные дети-файлы
     };
 
     componentWillReceiveProps = (newProps)           => { console.log(`Folder ${this.props.name} - componentWillReceiveProps`); };
@@ -26,6 +27,7 @@ class Folder extends React.Component {
     componentWillUnmount      = ()                   => { console.log(`Folder ${this.props.name} - componentWillUnmount`);      };
 
 
+    //клик по папке - открывает/закрывает ее и активирует, показывая ее файлы.
     clickFolder = () => {
         this.setState({isOpen:!this.state.isOpen});
         if (this.props.code!=this.props.activeFolder) {

@@ -1,10 +1,13 @@
 ﻿import React from 'react';
 import foldersEvents from './events';
 
+//Компонент - блок-список с файлами текущей активной папки.
 class Files extends React.Component {
 
+    //пропсов нет
+
     state = {
-        files: [],
+        files: [],   //массив фалов к показу
     }
 
     componentDidMount = () => {

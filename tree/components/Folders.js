@@ -4,14 +4,15 @@ import foldersEvents from './events';
 
 import Folder from './Folder';
 
+//Компонент - блок-дерево с папками.
 class Folders extends React.Component {
 
     static propTypes = {
-        folders: PropTypes.object.isRequired,
+        folders: PropTypes.object.isRequired, //входная папка (корень дерева)
     };
 
     state = {
-        activeFolder: '',
+        activeFolder: '', //код активной папки
     };
 
     componentDidMount = () => {
