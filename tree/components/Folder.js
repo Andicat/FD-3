@@ -7,6 +7,9 @@ import foldersEvents from './events';
 class Folder extends React.Component {
 
     static propTypes = {
+        showFiles: PropTypes.bool.isRequired, //показываем файлы вместе с папками
+        renderFuncFolder: PropTypes.func.isRequired, //функция рендера папки
+        renderFuncFile: PropTypes.func.isRequired, //функция рендера файла
         activeFolder: PropTypes.string.isRequired, //код активной папки
         code: PropTypes.string.isRequired,  //уникальный код
         name: PropTypes.string.isRequired,  //наименование
@@ -29,6 +32,8 @@ class Folder extends React.Component {
 
     //клик по папке - открывает/закрывает ее и активирует, показывая ее файлы.
     clickFolder = () => {
+        console.log(this.state.childrenFolders);
+        console.log(this.state.childrenFiles);
         this.setState({isOpen:!this.state.isOpen});
         if (this.props.code!=this.props.activeFolder) {
             foldersEvents.emit('showFiles',{files:this.state.childrenFiles, activeCode:this.props.code});
@@ -38,14 +43,11 @@ class Folder extends React.Component {
     render() {
         return (
             <div className={'tree__folder' + (this.state.isOpen?' tree__folder--open ':'')  + (this.props.code==this.props.activeFolder?' tree__folder--active ':'')}>
-                <div className='tree__folder-name' onClick={this.clickFolder}>
-                    <input type='checkbox' name='tree' id={this.props.name}/>
-                    <label htmlFor={this.props.name}></label>
-                    <span>{this.props.name}</span>
-                </div>
-                {this.state.isOpen && this.state.childrenFolders.length>0 && (
+                {this.props.renderFuncFolder(this.props.name,this.clickFolder)}
+                {this.state.isOpen && this.state.childrenFolders.length+this.state.childrenFiles.length>0 && (
                     <div className='tree__folder-children'>
-                        {this.state.childrenFolders.map( (v,i) => <Folder key={this.props.code + '-' + (i+1)} code={this.props.code + '-' + (i+1)} name={v.name} children={v.children} activeFolder={this.props.activeFolder}></Folder>)}
+                        {this.state.childrenFolders.map( (v,i) => <Folder key={this.props.code + '-' + (i+1)} code={this.props.code + '-' + (i+1)} name={v.name} children={v.children} activeFolder={this.props.activeFolder} renderFuncFolder={this.props.renderFuncFolder} renderFuncFile={this.props.renderFuncFile} showFiles={this.props.showFiles}></Folder>)}
+                        {this.props.showFiles && this.state.childrenFiles.map((v,i) => this.props.renderFuncFile(i,v.name,false))}
                     </div>
                     )
                 }
