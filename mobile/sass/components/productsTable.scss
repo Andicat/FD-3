@@ -1,0 +1,33 @@
+.productsTable {
+    display: inline-block;
+    border: solid teal 3px;
+
+    &__title {
+        font-size: 18px;
+        font-weight: bold;
+        color: teal;
+        padding: 5px;
+
+        .titleName {
+            display: inline-block;
+            width: 190px;
+        }
+
+        .titlePrice {
+            display: inline-block;
+            width: 80px;
+            text-align: center;
+        }
+
+        .titlePhoto {
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        .titleQuantity {
+            display: inline-block;
+            width: 50px;
+        }
+
+    }
+}

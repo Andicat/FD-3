@@ -1,0 +1,55 @@
+﻿.company {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid $color-gray;
+    
+    &__name {
+        display: flex;
+        padding: 10px;
+        border-bottom: 1px solid $color-gray;
+
+        h2 {
+            color: $color-text;
+            margin: 0;
+        }
+
+        input {
+            @include button;
+        }
+        
+    }
+
+    &__filter {
+        padding: 10px;
+        border-bottom: 1px solid $color-gray;
+
+        input {
+            @include button;
+        }
+    }
+
+    &__table-title {
+        padding: 10px;
+        border-bottom: 1px solid $color-gray;
+        color: $color-text;
+        font-weight: 600;
+
+        span {
+            display: inline-block;
+            width: 130px;
+
+            /*&:nth-child(1),
+            &:nth-child(2),
+            &:nth-child(3),
+            &:nth-child(4) {
+                
+            }*/
+        }
+    }
+
+    &__add {
+        @include button;
+        align-self: flex-start;
+        margin: 10px;
+    }
+}

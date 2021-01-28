@@ -1,0 +1,23 @@
+.client {
+    padding: 10px;
+    border-bottom: 1px solid $color-gray;
+
+    span {
+        display: inline-block;
+        width: 130px;
+    }
+
+    button {
+        @include button;
+        width: 110px;
+        margin-right: 20px;
+    }
+
+    &--active {
+        background-color: $color-active;
+    }
+
+    &--blocked {
+        background-color: $color-blocked;
+    }
+}
