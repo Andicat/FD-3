@@ -1,10 +1,13 @@
 ﻿import React from 'react';
+import PropTypes from 'prop-types';
 import foldersEvents from './events';
 
 //Компонент - блок-список с файлами текущей активной папки.
 class Files extends React.Component {
 
-    //пропсов нет
+    static propTypes = {
+        renderFunc: PropTypes.func.isRequired,
+    };
 
     state = {
         files: [],   //массив фалов к показу
@@ -27,7 +30,7 @@ class Files extends React.Component {
     
 
     renderFiles = (info) => {
-        this.setState({files: info.files.map((v,i) => <span key={i} className='tree__file'>{v.name}</span>)});
+        this.setState({files: info.files.map((v,i) => this.props.renderFunc(i,v.name,true))});
     }
 
     render() {

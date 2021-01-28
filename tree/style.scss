@@ -1,14 +1,4 @@
-﻿@mixin visually-hidden {
-	position: absolute;
-	clip: rect(0 0 0 0);
-	width: 1px;
-	height: 1px;
-	margin: -1px;
-	border: 0px;
-	padding: 0px;
-}
-
-.tree {
+﻿.tree {
     &__container {
         display: flex;
         border: 3px solid gray;
@@ -22,6 +12,11 @@
         padding: 10px;
         overflow: auto;
         position: relative;
+
+        &--only {
+            width: 100%;
+            border: none;
+        }
     }
 
     &__files {
@@ -42,29 +37,6 @@
 
         &-name {
             display: flex;
-
-            input {
-                @include visually-hidden;
-                display: none;
-                visibility: hidden;
-            }
-    
-            label {
-                display: block;
-                height: 30px;
-                width: 30px;
-                background-image: url("/img/up-arrow.svg");
-                background-repeat: no-repeat;
-                background-size: 10px;
-                background-position: center;
-                transform: rotate(90deg);
-                cursor: pointer;
-    
-                &:focus,
-                &:hover {
-                    background-size: 12px;
-                }
-            }
     
             span {
                 display: inline-block;
@@ -93,14 +65,29 @@
             margin-left: 10px;
         }
 
+        &-arrow {
+            transition: transform 0.1s;
+            height: 30px;
+            width: 30px;
+            background-image: url("/img/up-arrow.svg");
+            background-repeat: no-repeat;
+            background-size: 10px;
+            background-position: center;
+            transform: rotate(90deg);
+            cursor: pointer;
+
+            &:focus,
+            &:hover {
+                background-size: 12px;
+            }
+        }
+
         & > span {
             margin-left: 53px;
         }
         
-        &--open {
-            & > .tree__folder-name label {
-                transform: rotate(180deg);
-            }
+        &--open > .tree__folder-name .tree__folder-arrow {
+            transform: rotate(180deg);
         }
 
         &--active {
@@ -114,9 +101,10 @@
     }
 
     &__file {
+        display: block;
         position: relative;
         font-size: 20px;
-        margin-left: 20px;
+        margin-left: 60px;
         line-height: 30px;
         height: 30px;
         text-align: left;
@@ -132,6 +120,10 @@
             top: 5px;
             background-image: url("/img/file.svg");
             background-repeat: no-repeat;
+        }
+
+        &--aside {
+            margin-left: 20px;
         }
     }
 }

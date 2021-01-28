@@ -51,11 +51,23 @@ let treeData = { name: "tree", type:"FOLDER", children: [
   ] },
 ] };
 
+let renderFuncFile = (key,name,modeAside) => {
+    return <span key={key} className={'tree__file' + (modeAside?' tree__file--aside':'')}>{name}</span>;
+};
+
+let renderFuncFolder = (name, cbClick) => {
+    return <div className='tree__folder-name' onClick={cbClick}>
+                <div className='tree__folder-arrow'></div>
+                <span>{name}</span>
+            </div>
+};
+
+const showFilesAside = true;
+
 ReactDOM.render(
     <div className='tree__container'>
-        <Folders folders={treeData}></Folders>
-        <Files/>
+        <Folders folders={treeData} renderFuncFolder={renderFuncFolder} renderFuncFile={renderFuncFile} showFilesAside={showFilesAside}></Folders>
+        {showFilesAside && <Files renderFunc={renderFuncFile}/>}
     </div>
   , document.getElementById('container') 
 );
-

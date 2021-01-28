@@ -8,6 +8,9 @@ import Folder from './Folder';
 class Folders extends React.Component {
 
     static propTypes = {
+        showFilesAside: PropTypes.bool.isRequired, //показать файлы отдельным блоком
+        renderFuncFolder: PropTypes.func.isRequired, //функция рендера папки
+        renderFuncFile: PropTypes.func.isRequired, //функция рендера файла
         folders: PropTypes.object.isRequired, //входная папка (корень дерева)
     };
 
@@ -36,8 +39,8 @@ class Folders extends React.Component {
     
     render() {
         return (
-            <div className='tree__folders'>
-                <Folder key='1' code='1' name={this.props.folders.name} children={this.props.folders.children} activeFolder={this.state.activeFolder}></Folder>
+            <div className={'tree__folders' + (this.props.showFilesAside?'':' tree__folders--only')}>
+                <Folder key='1' code='1' name={this.props.folders.name} children={this.props.folders.children} activeFolder={this.state.activeFolder} showFiles={!this.props.showFilesAside} renderFuncFolder={this.props.renderFuncFolder} renderFuncFile={this.props.renderFuncFile}></Folder>
             </div>
         );
     }
