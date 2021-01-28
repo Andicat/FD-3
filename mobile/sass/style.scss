@@ -2,7 +2,7 @@
 //---------------------------------
 @import "variables";
 @import "mixins";
-//@import "_global";
+@import "global";
 
 // Components
 //---------------------------------
@@ -10,4 +10,3 @@
 //@import "components/productsTable.scss";
 @import "./components/client.scss";
 //@import "components/productCard.scss";
-

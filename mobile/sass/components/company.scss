@@ -1,12 +1,11 @@
 ﻿.company {
     display: flex;
     flex-direction: column;
-    border: 1px solid $color-gray;
+    
     
     &__name {
         display: flex;
         padding: 10px;
-        border-bottom: 1px solid $color-gray;
 
         h2 {
             color: $color-text;
@@ -21,11 +20,14 @@
 
     &__filter {
         padding: 10px;
-        border-bottom: 1px solid $color-gray;
 
         input {
             @include button;
         }
+    }
+
+    &__table {
+        border: 1px solid $color-gray;
     }
 
     &__table-title {

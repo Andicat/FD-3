@@ -20,4 +20,8 @@
     &--blocked {
         background-color: $color-blocked;
     }
+
+    &:last-child {
+        border: none;
+    }
 }

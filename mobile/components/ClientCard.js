@@ -1,19 +1,11 @@
 ﻿import React from 'react';
 import PropTypes from 'prop-types';
+import CompanyEvents from './events';
 
-class ProductCard extends React.Component {
+class ClientCard extends React.Component {
 
     static propTypes = {
-        isEdit: PropTypes.bool.isRequired,
-        isNew: PropTypes.bool.isRequired,
-        code: PropTypes.number.isRequired,
-        title: PropTypes.string.isRequired,
-        photo: PropTypes.string,
-        price: PropTypes.number.isRequired,
-        quantity: PropTypes.number.isRequired,
-        cbCancel: PropTypes.func.isRequired,
-        cbSave: PropTypes.func.isRequired,
-        cbChange: PropTypes.func.isRequired,
+        client: PropTypes.object.isRequired,
     };
 
     static defaultProps = {

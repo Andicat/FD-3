@@ -1,41 +1,23 @@
 ﻿import React from 'react';
 import PropTypes from 'prop-types';
+import CompanyEvents from './events';
 
 class Client extends React.PureComponent {
 
     static propTypes = {
         client: PropTypes.object.isRequired,
-        //isEdit: PropTypes.bool,
-        //isNew: PropTypes.bool,
-        //isChange: PropTypes.bool,
     };
 
-    componentDidUpdate = () => {
-        console.log(`Client ${this.props.client.lastName} did update`);
-    }
-
-    componentWillReceiveProps = (newProps) => {
-        //console.log(`Client ${this.props.client.lastName} componentWillReceiveProps`);
-        //this.setState({info:newProps.info});
-      };
-
-    /*selectclient = (evt) => {
-        if (!this.props.isChange&&(evt.target.type!='button')) {
-            this.props.cbEdit(this.props.code, false);
-        }
+    deleteClient = () => {
+        CompanyEvents.emit('deleteClient',this.props.client.id);
     };
 
-    deleteclient = () => {
-        this.props.cbDelete(this.props.code,this.props.title);
+    editClient = () => {
+        CompanyEvents.emit('editClient',{...this.props.client, name: 'Kate'});
     };
-
-    editclient = () => {
-        this.props.cbEdit(this.props.code, true);
-    };*/
 
     render() {
         console.log(`Client ${this.props.client.lastName} render`);
-        //console.log(this.props.client.activity);
         return (
             <div className={'client client--' + this.props.client.activity} onClick={this.selectClient}>
                 <span className='client__lastName'>{this.props.client.lastName}</span>

@@ -1,8 +1,9 @@
 ﻿import React from 'react';
 import PropTypes from 'prop-types';
+import CompanyEvents from './events';
 
 import Client from './Client';
-import ProductCard from './ProductCard';
+import ClientCard from './ClientCard';
 
 class Company extends React.PureComponent {
 
@@ -28,9 +29,6 @@ class Company extends React.PureComponent {
     state = {
         name: this.props.name,
         showActive: '',
-        //IsEditProduct: false,
-        //IsNewProduct: false,
-        //IsChangeProduct: false,
         clientsToShow:this.props.clients.slice(),
     }
 
@@ -39,40 +37,30 @@ class Company extends React.PureComponent {
     }
 
     setFilter = (activity) => {
-        this.setState({showActive:activity, clientsToShow: this.props.clients.filter(c => activity!=""?c.activity==activity:true)});
+        this.setState({showActive:activity});
     }
 
-    /*deleteProduct = (code,title) => {
-        var isConfirmed = confirm('Удалить ' + title + ' из списка товаров?');
-        if (isConfirmed) {
-            this.setState( {selectedProduct:null, clientsToShow:this.state.clientsToShow.filter( v => v.code!=code)} );
-        }
-    };
-
-    selectProduct = (code) => {
-        this.setState( {selectedProduct:code} );
-    };
-
-    changeProduct = () => {
-        this.setState( {IsChangeProduct:true} );
+    componentDidMount = () => {
+        CompanyEvents.addListener('deleteClient',this.deleteClient);
+        CompanyEvents.addListener('editClient',this.editClient);
     }
 
-    editProduct = (code,mode) => {
-        this.setState( {selectedProduct:code, IsEditProduct:mode, IsNewProduct:false, IsChangeProduct:false} );
+    componentWillUnmount = () => {
+        CompanyEvents.removeListener('deleteClient',this.deleteClient);
+        CompanyEvents.removeListener('editClient',this.editClient);
+    }
+
+    deleteClient = (clientId) => {
+        this.setState({clientsToShow:this.state.clientsToShow.filter(c => c.id!=clientId)});
     };
 
-    saveProduct = (code,info) => {
-        if (this.state.IsNewProduct) {
-            this.setState( {clientsToShow:[...this.state.clientsToShow,{code,...info}]});    
-        } else {
-            this.setState( {clientsToShow:this.state.clientsToShow.map( v => { return (v.code==code)? v = {code,...info}:v; })} );
-        }
-        this.setState( {IsEditProduct:false, IsNewProduct:false, IsChangeProduct:false} );
+    editClient = (clientNew) => {
+        this.setState({clientsToShow:this.state.clientsToShow.map(c => c.id!=clientNew.id?c:clientNew)});
     };
 
-    newProduct = () => {
-        this.setState( {IsEditProduct:true, selectedProduct:false, IsNewProduct:true} );
-    };*/
+    addClient = () => {
+        //this.setState( {IsEditProduct:true, selectedProduct:false, IsNewProduct:true} );
+    };
 
     render() {
 
@@ -91,27 +79,7 @@ class Company extends React.PureComponent {
                 <span className='titleDelete'>Удалить</span>
             </div>;
 
-        var clientsCode=this.state.clientsToShow.map( c =>
-            <Client key={c.id} client={c}/>
-        );
-        /*this.state.clientsToShow.forEach( v => {
-            clientsCode.push(<Client key={v.id} client={v}/>);
-            /*if (this.state.selectedProduct==v.code) {
-                card = <ProductCard key={v.code} photo={v.photo} title={v.title} code={v.code} price={v.price} quantity={v.quantity} 
-                isEdit={this.state.IsEditProduct} isNew={this.state.IsNewProduct}
-                cbCancel={this.editProduct}
-                cbSave={this.saveProduct}
-                cbChange={this.changeProduct}/>;
-            };
-        });*/
-
-        /*if (this.state.IsNewProduct) {
-            var newCode = this.state.clientsToShow.reduce(function (r, v) { return ( r < v.code ? v.code : r);},0) + 1;
-            card = <ProductCard key={newCode} code={newCode} isEdit={this.state.IsEditProduct} isNew={true}
-            cbCancel={this.editProduct}
-            cbSave={this.saveProduct}
-            cbChange={this.changeProduct}/>;
-        };*/
+        var clientsCode=this.state.clientsToShow.map( c => (this.state.showActive&&this.state.showActive!=c.activity)?null:<Client key={c.id} client={c}/>);
 
         return (
             <div className='company'>
