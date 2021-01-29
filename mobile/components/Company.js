@@ -112,7 +112,7 @@ class Company extends React.PureComponent {
                     {clientsTableTitleCode}
                     {clientsCode}
                 </div>
-                <input className='company__add'type="button" value="Добавить клиента" onClick={this.newClient} />
+                <input className='company__add' type="button" value="Добавить клиента" onClick={this.newClient} />
                 {cardCode}
             </div>
         )
