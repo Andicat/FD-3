@@ -29,6 +29,7 @@ class Company extends React.PureComponent {
     state = {
         name: this.props.name,
         showActive: '',
+        clientToEdit: null,
         clientsToShow:this.props.clients.slice(),
     }
 
@@ -43,31 +44,41 @@ class Company extends React.PureComponent {
     componentDidMount = () => {
         CompanyEvents.addListener('deleteClient',this.deleteClient);
         CompanyEvents.addListener('editClient',this.editClient);
+        CompanyEvents.addListener('updateClient',this.updateClient);
     }
 
     componentWillUnmount = () => {
         CompanyEvents.removeListener('deleteClient',this.deleteClient);
         CompanyEvents.removeListener('editClient',this.editClient);
+        CompanyEvents.removeListener('updateClient',this.updateClient);
     }
 
     deleteClient = (clientId) => {
         this.setState({clientsToShow:this.state.clientsToShow.filter(c => c.id!=clientId)});
     };
 
-    editClient = (clientNew) => {
-        this.setState({clientsToShow:this.state.clientsToShow.map(c => c.id!=clientNew.id?c:clientNew)});
+    editClient = (client) => {
+        this.setState({clientToEdit:null}, () => {this.setState({clientToEdit:client})});
     };
 
-    addClient = () => {
-        //this.setState( {IsEditProduct:true, selectedProduct:false, IsNewProduct:true} );
+    updateClient = (clientNew) => {
+        let clientsToShowNew;
+        if (clientNew.id) {
+            clientsToShowNew = this.state.clientsToShow.map(c => c.id!=clientNew.id?c:clientNew);
+        } else {
+            let newId = this.state.clientsToShow.reduce(function (r, v) { return ( r < v.id ? v.id : r);},0) + 1;
+            clientsToShowNew = [...this.state.clientsToShow,{id:newId,...clientNew}];
+        }
+        this.setState({clientsToShow:clientsToShowNew,clientToEdit:null});
     };
+
+    newClient = () => {
+        this.setState( {clientToEdit:{lastName: "", name: "", midName: "", balance: 0, activity: "active",}} );
+    }
 
     render() {
-
-        console.log(`Company render`);
-
-        var card=null;
-
+        console.log(`Company ${this.state.name} render`);
+    
         var clientsTableTitleCode = 
             <div className='company__table-title'>
                 <span className='titleLastName'>Фамилия</span>
@@ -80,6 +91,10 @@ class Company extends React.PureComponent {
             </div>;
 
         var clientsCode=this.state.clientsToShow.map( c => (this.state.showActive&&this.state.showActive!=c.activity)?null:<Client key={c.id} client={c}/>);
+
+        if (this.state.clientToEdit) {
+            var cardCode = <ClientCard client={this.state.clientToEdit}/>;
+        };
 
         return (
             <div className='company'>
@@ -97,7 +112,8 @@ class Company extends React.PureComponent {
                     {clientsTableTitleCode}
                     {clientsCode}
                 </div>
-                <input className='company__add'type="button" value="Добавить клиента" onClick={this.addClient} />
+                <input className='company__add'type="button" value="Добавить клиента" onClick={this.newClient} />
+                {cardCode}
             </div>
         )
     }

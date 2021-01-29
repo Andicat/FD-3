@@ -1,0 +1,36 @@
+.clientCard {
+    padding: 10px;
+    border: 1px solid $color-gray;
+    color: $color-text;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: flex-start;
+
+    &__field {
+        display: flex;
+        align-items: center;
+        position: relative;
+        margin: 6px 0;
+
+        label {
+            display: block;
+            padding: 0 5px 0;
+        }
+
+        input {
+            display: block;
+            margin-left: auto;
+            outline: none;
+            background-color: #ffffff;
+            border: 1px solid $color-gray;
+            border-radius: 5px;
+            padding: 5px;
+        }
+
+        button {
+            @include button;
+        }
+    }
+}

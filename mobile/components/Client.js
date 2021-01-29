@@ -13,7 +13,7 @@ class Client extends React.PureComponent {
     };
 
     editClient = () => {
-        CompanyEvents.emit('editClient',{...this.props.client, name: 'Kate'});
+        CompanyEvents.emit('editClient',this.props.client);
     };
 
     render() {
@@ -25,8 +25,8 @@ class Client extends React.PureComponent {
                 <span className='client__midName'>{this.props.client.midName}</span>
                 <span className='client__balance'>{this.props.client.balance}</span>
                 <span className='client__activity'>{this.props.client.activity}</span>
-                <button className='client__button' type='button' onClick={this.editClient} disabled={this.props.isChange||this.props.isNew}>Редактировать</button>
-                <button className='client__button' type='button' onClick={this.deleteClient} disabled={this.props.isEdit}>Удалить</button>
+                <button className='client__button' type='button' onClick={this.editClient}>Редактировать</button>
+                <button className='client__button' type='button' onClick={this.deleteClient}>Удалить</button>
             </div>
         );
     }
