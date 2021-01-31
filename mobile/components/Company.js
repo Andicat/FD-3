@@ -20,6 +20,11 @@ class Company extends React.PureComponent {
             })
         ),
     };
+    
+    constructor(props) {
+        super(props);
+        this.sampleMethod = this.setFilter.bind(this);
+    }
 
     static defaultProps = {
         name: 'Velcom',
