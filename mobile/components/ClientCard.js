@@ -38,8 +38,8 @@ class ClientCard extends React.PureComponent {
                     <input type='text' name='balance' id='balance' defaultValue={this.props.client.balance} ref={(f) => this.balance = f}/>
                 </div>
                 <div className='clientCard__field'>
-                    <button type='button' onClick={this.save}>Сохранить </button>
-                    <button type='button' onClick={this.cancel}>Отмена</button>
+                    <button className='clientCard__save' type='button' onClick={this.save}>Сохранить </button>
+                    <button className='clientCard__cancel' type='button' onClick={this.cancel}>Отмена</button>
                 </div>
             </div>
         );
