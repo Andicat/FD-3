@@ -20,15 +20,15 @@ class Scales {
     }
 
     add(...productList:Product[]):void {
-        productList.forEach(p => this.productsArr.push(p));
+        productList.forEach((p:Product) => this.productsArr.push(p));
     }
 
     getSumScale():number {
-        return this.productsArr.reduce( (r,p) => r + p.getScale(),0);
+        return this.productsArr.reduce( (r:number,p:Product) => r + p.getScale(),0);
     }
 
     getNameList():Array<string> {
-        return this.productsArr.map( p => p.getName());
+        return this.productsArr.map((p:Product) => p.getName());
     }
     
 }

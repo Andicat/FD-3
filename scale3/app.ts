@@ -34,7 +34,7 @@ class Scales<StorageEngine extends IStorageEngine> {
     }
 
     getSumScale():number {
-        let sumScale = 0;
+        let sumScale:number = 0;
         for (let i=0; i< this.storageEngine.getCount();i++) {
             sumScale += this.storageEngine.getItem(i).getScale();
         }
@@ -81,9 +81,9 @@ class ScalesStorageEngineLocalStorage implements IStorageEngine {
         localStorage.setItem(this.storageName,JSON.stringify([]));
     }
 
-    private getLsData():Array<object> {
-        let ls = localStorage.getItem(this.storageName);
-        let dataLs = [];
+    private getLsData():Array<any> {
+        let ls:string = localStorage.getItem(this.storageName);
+        let dataLs:Array<any> = [];
         if (ls) {
             dataLs = JSON.parse(ls);
         }
@@ -97,14 +97,10 @@ class ScalesStorageEngineLocalStorage implements IStorageEngine {
     };
 
     getItem(_index:number):Product {
-        let ls = localStorage.getItem(this.storageName);
-        let dataLs = [];
-        if (ls) {
-            dataLs = JSON.parse(ls);
-        }
-        let productName = dataLs[_index].name;
-        let productWeight = dataLs[_index].weight;
-        let product = new Product(productName,productWeight);
+        let dataLs = this.getLsData();
+        let productName:string = dataLs[_index].name;
+        let productWeight:number = dataLs[_index].weight;
+        let product:Product = new Product(productName,productWeight);
         return product;
     };
 
@@ -114,7 +110,7 @@ class ScalesStorageEngineLocalStorage implements IStorageEngine {
     };
 }
 
-class Product {
+class Product{
 
     private name:string;
     private weight:number;

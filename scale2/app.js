@@ -21,19 +21,6 @@ var Scales = /** @class */ (function () {
     };
     return Scales;
 }());
-var Product = /** @class */ (function () {
-    function Product(_name, _weight) {
-        this.name = _name;
-        this.weight = _weight;
-    }
-    Product.prototype.getScale = function () {
-        return this.weight;
-    };
-    Product.prototype.getName = function () {
-        return this.name;
-    };
-    return Product;
-}());
 var Apple = /** @class */ (function () {
     function Apple(_name, _weight) {
         this.name = _name;

@@ -4,22 +4,22 @@
 
 class Scales {
     
-    productsArr:Array<Product>;
+    productsArr:Array<IScalable>;
 
     constructor() {
         this.productsArr = [];
     }
 
-    add(...productList:Product[]):void {
-        productList.forEach((p:Product) => this.productsArr.push(p));
+    add(...productList:Array<IScalable>):void {
+        productList.forEach((p:IScalable) => this.productsArr.push(p));
     }
 
     getSumScale():number {
-        return this.productsArr.reduce((r:number,p:Product) => r + p.getScale(),0);
+        return this.productsArr.reduce((r:number,p) => r + p.getScale(),0);
     }
 
     getNameList():Array<string> {
-        return this.productsArr.map((p:Product) => p.getName());
+        return this.productsArr.map((p:IScalable) => p.getName());
     }
     
 }

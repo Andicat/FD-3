@@ -75,11 +75,7 @@ var ScalesStorageEngineLocalStorage = /** @class */ (function () {
     };
     ;
     ScalesStorageEngineLocalStorage.prototype.getItem = function (_index) {
-        var ls = localStorage.getItem(this.storageName);
-        var dataLs = [];
-        if (ls) {
-            dataLs = JSON.parse(ls);
-        }
+        var dataLs = this.getLsData();
         var productName = dataLs[_index].name;
         var productWeight = dataLs[_index].weight;
         var product = new Product(productName, productWeight);
